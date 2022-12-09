@@ -135,7 +135,9 @@ Starting a Gradle Daemon (subsequent builds will be faster)
 - This version of the Android Support plugin for IntelliJ IDEA (or Android Studio) cannot open this project, please retry with version 2021.2.1 or newer.
 - 안드로이드 스튜디오 버전을 올리기 위해서 최신 버전으로 받음
 - https://codinghero.tistory.com/182
-- 
+- JAVA-HOME의 경로가 java11로 되어 있지 않고 1.8.x 로 되어 있어서 그런거 같다. 11로 수정하니 된다.
+
+셋팅 및 실행 테스트 끝!!
 
 
 
