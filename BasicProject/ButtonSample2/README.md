@@ -12,5 +12,5 @@
 <br/>
 
 ### 스크린샷
-<img src="./screenshot/Screenshot_1670682462.png" width="50%" height="50%"/>
-<img src="./screenshot/Screenshot_1670682459.png" width="50%" height="50%"/>
+<img src="./screenshot/001.png" width="50%" height="50%"/>
+<img src="./screenshot/003.png" width="50%" height="50%"/>
