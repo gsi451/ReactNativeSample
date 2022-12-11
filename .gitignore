@@ -45,7 +45,8 @@ gradle-app.setting
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
@@ -203,6 +204,7 @@ dist
 .tern-port
 
 # Stores VSCode versions used for testing VSCode extensions
+.vscode
 .vscode-test
 
 # yarn v2
