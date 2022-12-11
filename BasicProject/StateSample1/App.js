@@ -11,9 +11,7 @@ const Blink = (props) => {
   const [isShowingText, setIsShowingText] = useState(true);
 
   useEffect(() => {
-    const toggle = setInterval(() => {
-      setIsShowingText(!isShowingText);
-    }, 1000);
+    const toggle = setInterval(() => { setIsShowingText(!isShowingText); }, 1000)
 
     return () => clearInterval(toggle);
   });
