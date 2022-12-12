@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {View, Text, StyleSheet, Button} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 
 // https://code-masterjung.tistory.com/126
 // Navigation의 navigate(), push() 2개의 차이
@@ -18,6 +19,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // Detail 화면에서 {route.params.id} 로 값을 사용할 수 있다.
 
 // 앱이 각 화면이 전환될 수 있는 기본 틀을 제공한다.
+
+// icon 추가
+// https://oblador.github.io/react-native-vector-icons/
+// npm install react-native-vector-icons
+
 const Tab = createBottomTabNavigator();
 
 const HomeScreen = ({navigation}) => {
@@ -26,11 +32,11 @@ const HomeScreen = ({navigation}) => {
       <Text>HomeScreen</Text>
       <Button
         title="Go to HomeScreen2"
-        onPress={ () => navigation.navigate('Home2')}
+        onPress={() => navigation.navigate('Home2')}
       />
     </View>
-  )
-}
+  );
+};
 
 const HomeScreen2 = ({navigation}) => {
   return (
@@ -38,19 +44,13 @@ const HomeScreen2 = ({navigation}) => {
       <Text>HomeScreen2</Text>
       <Button
         title="Go to HomeScreen2"
-        onPress={ () => navigation.push('Home2')}
+        onPress={() => navigation.push('Home2')}
       />
-      <Button 
-        title="Go to Home"
-        onPress={ () => navigation.navigate('Home')}
-      />
-      <Button
-        title="Go Back"
-        onPress={() => navigation.goBack()}
-      />
+      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
+      <Button title="Go Back" onPress={() => navigation.goBack()} />
     </View>
-  )
-}
+  );
+};
 
 const DetailsScreen = ({navigation}) => {
   return (
@@ -58,11 +58,11 @@ const DetailsScreen = ({navigation}) => {
       <Text>Details Screen</Text>
       <Button
         title="Go to Details"
-        onPress={ () => navigation.push('Details2')}
+        onPress={() => navigation.push('Details2')}
       />
     </View>
-  )
-}
+  );
+};
 
 const DetailsScreen2 = ({navigation}) => {
   return (
@@ -70,23 +70,20 @@ const DetailsScreen2 = ({navigation}) => {
       <Text>Details Screen2</Text>
       <Button
         title="Go to Details2 again"
-        onPress={ () => navigation.push('Details2')}
-      />
-      <Button 
-        title="Go to Details"
-        onPress={ () => navigation.navigate('Details')}
+        onPress={() => navigation.push('Details2')}
       />
       <Button
-        title="Go Back"
-        onPress={() => navigation.goBack()}
+        title="Go to Details"
+        onPress={() => navigation.navigate('Details')}
       />
-      <Button 
+      <Button title="Go Back" onPress={() => navigation.goBack()} />
+      <Button
         title="Go back to first screen in stack"
         onPress={() => navigation.popToTop()}
       />
     </View>
-  )
-}
+  );
+};
 
 const HomeStack = createStackNavigator();
 function HomeStackScreen() {
@@ -95,7 +92,7 @@ function HomeStackScreen() {
       <HomeStack.Screen name="Home" component={HomeScreen} />
       <HomeStack.Screen name="Home2" component={HomeScreen2} />
     </HomeStack.Navigator>
-  )
+  );
 }
 
 const DetailStack = createStackNavigator();
@@ -105,26 +102,45 @@ function DetailStackScreen() {
       <DetailStack.Screen name="Details" component={DetailsScreen} />
       <DetailStack.Screen name="Details2" component={DetailsScreen2} />
     </DetailStack.Navigator>
-  )
+  );
 }
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator screenOptions={{ headerShown: false }}>        
-        <Tab.Screen name="Home" component={HomeStackScreen} />
-        <Tab.Screen name="Details" component={DetailStackScreen} />
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          headerShown: false,
+          tabBarHideOnKeyboard: true,
+          showLabel: false,
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === 'TabHome') {
+              iconName = focused ? 'beer-outline' : 'beer-outline';
+            } else if (route.name === 'TabDetails'){
+              iconName = focused ? 'beer-outline' : 'beer-outline';
+            }
+            iconSize = focused ? 30 : 20;
+            
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={iconSize}  color={color}/>;
+          },
+        })}
+        >
+        <Tab.Screen name="TabHome" component={HomeStackScreen} />
+        <Tab.Screen name="TabDetails" component={DetailStackScreen} />
       </Tab.Navigator>
     </NavigationContainer>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
-  }
-})
+    justifyContent: 'center',
+  },
+});
 
 export default App;
