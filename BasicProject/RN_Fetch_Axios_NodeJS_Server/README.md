@@ -1,4 +1,4 @@
-## React Native 프론트와 Node.js용 서버와의 통신 샘플
+# React Native 프론트와 Node.js용 서버와의 통신 샘플
 
 (참고자료) : https://www.youtube.com/watch?v=d6suykcsNeY&t=249s
 이 영상을 토대로 작업 했습니다.
@@ -7,6 +7,8 @@
 
 - 프로젝트 폴더 생성
 - client, server 2개 폴더 생성
+
+## 서버 셋팅
 
 ### 서버 생성
 
@@ -121,4 +123,58 @@ app.get('api/todo', (req, res) => {
 ![image](https://user-images.githubusercontent.com/119641015/207506744-f4805d44-a722-4f56-8b25-716cafc32a67.png)
 
 ### 서버단의 todo 리스트를 가져오고 저장하는 기능까지 완료!!!
+
+## 클라이언트 셋팅
+
+### React 프로젝트 생성
+
+- VSCode의 터미널 창으로 이동
+- client 부모 폴더로 이동
+- 명령어 입력시 해당 폴더명을 같이 넣어줘야 해서 위쪽 폴더로 이동해서 명령어를 입력
+- npx create-react-app client 를 입력후 프로젝트 생성
+- npm i express 를 설치한다. (node_modules 폴더가 생깁니다.)
+- 서버 코드를 작성하기 위해서 app.js 파일을 생성합니다.
+
+### 불필요한 코드 삭제
+```
+App.css
+App.test.js
+index.css
+logo.svg
+4개 파일을 삭제
+이후 삭제한 파일을 삭제한 곳에 임포트 코드 삭제
+이후 App.js 파일을 기준으로 정리
+```
+
+### Todo List 헤더 추가후 동작 확인
+```javascript
+
+function App() {
+  return (
+    <div className="App">
+      <h1>Todo List</h1>
+    </div>
+  );
+}
+
+export default App;
+
+```
+동작 확인
+
+![image](https://user-images.githubusercontent.com/119641015/207511062-2ad4fedf-9315-4a95-aa7d-28d9cfe6351c.png)
+
+### 크롬 개발자 도구가 F12를 누르면 나왔다가 없어지는 문제
+
+- 이상하게 개발자 도구 화면이 나왔다가 없어지는 현상이 나온다.
+- 리액터를 npm start를 사용해서 열었기 때문에 그런거 같다.
+- 관리자 권한으로 cmd를 실행한다.
+- npm install -g ndb 를 설치 한다.
+- Windows 사용자는 위 스크립트가 에러날 수도 있다. 그러면 Powershell을 관리자 모드로 실행하고 아래 스크립트를 실행하자.
+- npm install -g windows-build-tools
+- 설치한 패키지들도 같이 디버깅하고 싶다면 아래 스크립트를 실행한다.
+- ndb npm start
+- 음.. 제대로 실행 안됨
+
+
 
