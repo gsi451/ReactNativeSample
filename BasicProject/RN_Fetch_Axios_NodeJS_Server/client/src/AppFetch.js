@@ -1,3 +1,7 @@
+/*
+ * Fetch를 사용해서 네트웍 통신
+*/
+
 import { useEffect, useState } from "react";
 
 function App() {
