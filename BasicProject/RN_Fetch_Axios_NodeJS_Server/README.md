@@ -198,4 +198,7 @@ app.use(cors());
 - 처음 App이 실행되면 todoList의 값은 null이 된다. 이때 화면에 렌더링 할때 null인지 아닌지 판단해서 다른 UI를 구성할 수 있다.
 - 나머지는 코드 참조
 
+### Axios 설치
 
+- npm i axios 를 설치합니다.
+- 나머지는 소스 코드 참조
