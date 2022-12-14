@@ -1,4 +1,6 @@
-# React Native 프론트와 Node.js용 서버와의 통신 샘플
+# React 프론트와 Node.js용 서버와의 통신 샘플
+
+> 네이밍은 RN으로 했지만 리엑터 소스임!!
 
 (참고자료) : https://www.youtube.com/watch?v=d6suykcsNeY&t=249s
 이 영상을 토대로 작업 했습니다.
@@ -164,17 +166,36 @@ export default App;
 
 ![image](https://user-images.githubusercontent.com/119641015/207511062-2ad4fedf-9315-4a95-aa7d-28d9cfe6351c.png)
 
-### 크롬 개발자 도구가 F12를 누르면 나왔다가 없어지는 문제
+### CORS 오류 수정
 
-- 이상하게 개발자 도구 화면이 나왔다가 없어지는 현상이 나온다.
-- 리액터를 npm start를 사용해서 열었기 때문에 그런거 같다.
-- 관리자 권한으로 cmd를 실행한다.
-- npm install -g ndb 를 설치 한다.
-- Windows 사용자는 위 스크립트가 에러날 수도 있다. 그러면 Powershell을 관리자 모드로 실행하고 아래 스크립트를 실행하자.
-- npm install -g windows-build-tools
-- 설치한 패키지들도 같이 디버깅하고 싶다면 아래 스크립트를 실행한다.
-- ndb npm start
-- 음.. 제대로 실행 안됨
+실행하면 아래와 같은 오류들이 나오게 된다.
 
+![image](https://user-images.githubusercontent.com/119641015/207515699-fca6f33a-14a1-4c0e-9c23-27801ca4453b.png)
+
+이 부분은 서버단에서 생기는 문제임
+서버 코드에 npm 설치후 코드 추가해야한다.
+
+> npm install cors 로 설치함
+> 코드에 추가함
+```javascript
+const cors = require('cors')
+
+app.use(cors());
+```
+아래와 같이 정상적으로 불러 오는걸 확인할 수 있다.
+
+![image](https://user-images.githubusercontent.com/119641015/207516739-24d7130b-a292-456d-9746-44cd15ed2b02.png)
+
+### CORS 수정후 화면 정상적으로 가져온 모습
+
+![image](https://user-images.githubusercontent.com/119641015/207516903-4cb0630a-4748-42f9-90e2-ff9ecc4bd6cd.png)
+
+### 이후는 코드를 참조하면 된다.
+
+- 해당 데이터는 useState를 사용해서 담는다.
+- 해당 데이터를 가져올때는 fetch, axios를 사용한다.
+- useEffect를 사용해서 한번만 불러 오도록 한다.
+- 처음 App이 실행되면 todoList의 값은 null이 된다. 이때 화면에 렌더링 할때 null인지 아닌지 판단해서 다른 UI를 구성할 수 있다.
+- 나머지는 코드 참조
 
 
