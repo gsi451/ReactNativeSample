@@ -1,10 +1,20 @@
 package com.splashsample1;
 
+import android.os.Bundle;
+
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
+import com.splashsample1.GsiSplash.GsiSplash;
 
 public class MainActivity extends ReactActivity {
+
+  // 이 메소드가 없을수 있다. 없다면 이렇게 그냥 추가
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    GsiSplash.show(this);  // <-- 여기 추가
+    super.onCreate(savedInstanceState);
+  }
 
   /**
    * Returns the name of the main component registered from JavaScript. This is used to schedule
