@@ -119,6 +119,7 @@ export default class MovieHome extends Component {
   };
 
   calculateNextPrev = (totalPage, currentPage) => {
+    // 이미지가 2개 있을때 아래 코드가 if (totalPage >= currentPage) { 이렇게 변경해야 할 수도 있다. 참고하자.
     if (totalPage > currentPage) {
       this.setNext(true);
     }
